@@ -34,10 +34,8 @@ void PID::UpdateError(double cte) {
 
 double PID::Response() {
   double response = -(Kp_ * p_error_ + Kd_ * d_error_ + Ki_ * i_error_);
-//  if (response > 1) response = std::fmod(response, 1);
-//  else if (response < -1) response = std::fmod(response, -1);
 
-  return std::max(-1., std::min(1., response));
+  return std::tanh(response);
 
 }
 
